@@ -67,14 +67,14 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 
-// TODO (1) Use Android Studio's Activity wizard to create a new Activity called ChildActivity
+// TODO (1) Use Android Studio's Activity wizard to create a new Activity called ChildActivity Okay
 
 // Do steps 2 - 5 in activity_child.xml
-// TODO (2) Change the ConstraintLayout to a FrameLayout and make appropriate adjustments
-// TODO (3) Add a TextView with an id value of @id/tv_display
-// TODO (4) Set the text to something that indicates this is default text being displayed
-// TODO (5) Make the text size a little larger
+// TODO (2) Change the ConstraintLayout to a FrameLayout and make appropriate adjustments Okay
+// TODO (3) Add a TextView with an id value of @id/tv_display Okay
+// TODO (4) Set the text to something that indicates this is default text being displayed Okay
+// TODO (5) Make the text size a little larger Okay
 
 // Do steps 6 & 7 in ChildActivity.java
-// TODO (6) Create a TextView field to display your message
-// TODO (7) Get a reference to your TextView in Java
+// TODO (6) Create a TextView field to display your message Okay
+// TODO (7) Get a reference to your TextView in Java Okay
