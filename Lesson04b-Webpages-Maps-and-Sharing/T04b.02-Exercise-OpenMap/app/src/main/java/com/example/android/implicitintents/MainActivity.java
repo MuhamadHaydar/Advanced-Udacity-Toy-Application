@@ -48,12 +48,18 @@ public class MainActivity extends AppCompatActivity {
      * @param v Button that was clicked.
      */
     public void onClickOpenAddressButton(View v) {
-        // TODO (5) Store an address in a String
+        // TODO (5) Store an address in a String Okay
+        String address = "erbil,iraq";
 
-        // TODO (6) Use Uri.Builder with the appropriate scheme and query to form the Uri for the address
+        // TODO (6) Use Uri.Builder with the appropriate scheme and query to form the Uri for the address Okay
+        Uri.Builder location = new Uri.Builder();
+        location.scheme("geo")
+                .path("0.0")
+                .appendQueryParameter("q", address);
+        Uri addressUri = location.build();
 
-        // TODO (7) Replace the Toast with a call to showMap, passing in the Uri from the previous step
-        Toast.makeText(this, "TODO: Open a map when this button is clicked", Toast.LENGTH_SHORT).show();
+        // TODO (7) Replace the Toast with a call to showMap, passing in the Uri from the previous step Okay
+        showMap(addressUri);
     }
 
     /**
@@ -112,13 +118,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    // TODO (1) Create a method called showMap with a Uri as the single parameter
+    // TODO (1) Create a method called showMap with a Uri as the single parameter Okay
     // Do steps 2 - 4 within the showMap method
-        // TODO (2) Create an Intent with action type, Intent.ACTION_VIEW
+    // TODO (2) Create an Intent with action type, Intent.ACTION_VIEW Okay
 
-        // TODO (3) Set the data of the Intent to the Uri passed into this method
+    // TODO (3) Set the data of the Intent to the Uri passed into this method Okay
 
-        // TODO (4) Verify that this Intent can be launched and then call startActivity
+    // TODO (4) Verify that this Intent can be launched and then call startActivity Okay
 
-
+    private void showMap(Uri map) {
+        Intent goMapLocation = new Intent(Intent.ACTION_VIEW);
+        goMapLocation.setData(map);
+        if (goMapLocation.resolveActivity(getPackageManager()) != null) {
+            startActivity(goMapLocation);
+        }
+    }
 }
