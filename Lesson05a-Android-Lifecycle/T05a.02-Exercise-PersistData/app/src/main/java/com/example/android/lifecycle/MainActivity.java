@@ -15,7 +15,8 @@ public class MainActivity extends AppCompatActivity {
      */
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    // TODO (1) Create a key String called LIFECYCLE_CALLBACKS_TEXT_KEY
+    // TODO (1) Create a key String called LIFECYCLE_CALLBACKS_TEXT_KEY Okay
+    private static final String LIFECYCLE_CALLBACKS_TEXT_KEY = "callbacks";
 
     /* Constant values for the names of each respective lifecycle callback */
     private static final String ON_CREATE = "onCreate";
@@ -49,8 +50,11 @@ public class MainActivity extends AppCompatActivity {
 
         mLifecycleDisplay = (TextView) findViewById(R.id.tv_lifecycle_events_display);
 
-        // TODO (6) If savedInstanceState is not null and contains LIFECYCLE_CALLBACKS_TEXT_KEY, set that text on our TextView
-
+        // TODO (6) If savedInstanceState is not null and contains LIFECYCLE_CALLBACKS_TEXT_KEY, set that text on our TextView Okay
+        if (savedInstanceState != null) {
+            String previousCallbackMethods = savedInstanceState.getString(LIFECYCLE_CALLBACKS_TEXT_KEY);
+            mLifecycleDisplay.setText(previousCallbackMethods);
+        }
         logAndAppend(ON_CREATE);
     }
 
@@ -137,11 +141,20 @@ public class MainActivity extends AppCompatActivity {
         logAndAppend(ON_DESTROY);
     }
 
-    // TODO (2) Override onSaveInstanceState
+    // TODO (2) Override onSaveInstanceState Okay
     // Do steps 3 - 5 within onSaveInstanceState
-    // TODO (3) Call super.onSaveInstanceState
-    // TODO (4) Call logAndAppend with the ON_SAVE_INSTANCE_STATE String
-    // TODO (5) Put the text from the TextView in the outState bundle
+    // TODO (3) Call super.onSaveInstanceState Okay
+    // TODO (4) Call logAndAppend with the ON_SAVE_INSTANCE_STATE String Okay
+    // TODO (5) Put the text from the TextView in the outState bundle Okay
+
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        logAndAppend(ON_SAVE_INSTANCE_STATE);
+        String callbackMethods = (String) mLifecycleDisplay.getText().toString();
+        outState.putString(LIFECYCLE_CALLBACKS_TEXT_KEY, callbackMethods);
+    }
 
     /**
      * Logs to the console and appends the lifecycle method name to the TextView so that you can
