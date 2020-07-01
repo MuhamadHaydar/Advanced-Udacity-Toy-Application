@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             protected void onStartLoading() {
 
-                /* If no arguments were passed, we don't have a query to perform. Simply return. */
+                /* If no arguments were passed, we don't have a query to perform. Simply return.. */
                 if (args == null) {
                     return;
                 }
