@@ -17,6 +17,7 @@ package android.example.com.visualizerpreferences;
  */
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.example.com.visualizerpreferences.AudioVisuals.AudioInputReader;
 import android.example.com.visualizerpreferences.AudioVisuals.VisualizerView;
@@ -25,6 +26,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 public class VisualizerActivity extends AppCompatActivity {
@@ -115,14 +119,32 @@ public class VisualizerActivity extends AppCompatActivity {
         }
     }
 
-    // TODO (1) Create a new Empty Activity named SettingsActivity; make sure to generate the
+    // TODO (1) Create a new Empty Activity named SettingsActivity; make sure to generate the Okay
     // activity_settings.xml layout file as well and add the activity to the manifest
 
-    // TODO (2) Add a new resource folder called menu and create visualizer_menu.xml
-    // TODO (3) In visualizer_menu.xml create a menu item with a single item. The id should be
+    // TODO (2) Add a new resource folder called menu and create visualizer_menu.xml Okay
+    // TODO (3) In visualizer_menu.xml create a menu item with a single item. The id should be Okay
     // "action_settings", title should be saved in strings.xml, the item should never
     // be shown as an action, and orderInCategory should be 100
 
-    // TODO (5) Add the menu to the menu bar
-    // TODO (6) When the "Settings" menu item is pressed, open SettingsActivity
+    // TODO (5) Add the menu to the menu bar Okay
+    // TODO (6) When the "Settings" menu item is pressed, open SettingsActivity Okay
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.visualizer_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == R.id.action_settings){
+            Intent goSettings = new Intent(this,SettingsActivity.class);
+            startActivity(goSettings);
+        }
+        return true;
+    }
 }
