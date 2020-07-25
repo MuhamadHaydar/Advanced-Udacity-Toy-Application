@@ -16,10 +16,10 @@ package android.example.com.visualizerpreferences;
  * limitations under the License.
  */
 
+import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -58,5 +58,5 @@ public class SettingsActivity extends AppCompatActivity {
 
     // TODO (7) Set the root layout of activity_settings to our newly created SettingsFragment Okay
     // and remove the padding.
-    // [HINT] Use a <fragment> element in xml
+
 }
