@@ -51,6 +51,10 @@ public class MainActivity extends AppCompatActivity {
     // advance the app to the next word
     private final int STATE_SHOWN = 1;
 
+    // Get the indexes for both word and definition.
+    int wordIndex = DroidTermsExampleContract.COLUMN_INDEX_WORD;
+    int definitionIndex = DroidTermsExampleContract.COLUMN_INDEX_DEFINITION;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
         mButton = (Button) findViewById(R.id.button_next);
         mWord = (TextView) findViewById(R.id.text_view_word);
         mDefinition = (TextView) findViewById(R.id.text_view_definition);
+
+        // Hide the definition.
+        mDefinition.setVisibility(View.INVISIBLE);
 
         //Run the database operation to get the cursor off of the main thread
         new WordFetchTask().execute();
@@ -93,23 +100,25 @@ public class MainActivity extends AppCompatActivity {
         // Change button text
         mButton.setText(getString(R.string.show_definition));
 
-        // TODO (3) Go to the next word in the Cursor, show the next word and hide the definition
+        // TODO (3) Go to the next word in the Cursor, show the next word and hide the definition Okay
         // Note that you shouldn't try to do this if the cursor hasn't been set yet.
         // If you reach the end of the list of words, you should start at the beginning again.
-        mCurrentState = STATE_HIDDEN;
         if (mData != null) {
+            mCurrentState = STATE_HIDDEN;
             if (mData.isLast()) {
                 // if the cursor in last row we have to move to the beginning.
                 mData.moveToFirst();
             }
             // Move the cursor to the next word.
             mData.moveToNext();
-            // Get the index of the word column.
-            int wordIndex = DroidTermsExampleContract.COLUMN_INDEX_WORD;
             // Get the word from column
             String word = mData.getString(wordIndex);
+            // Get the definition from column
+            String definition = mData.getString(definitionIndex);
             // Set the word to the view.
             mWord.setText(word);
+            // Set the definition to the view.
+            mDefinition.setText(definition);
             // Hide the definition first.
             mDefinition.setVisibility(View.INVISIBLE);
         }
@@ -122,12 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
         // TODO (4) Show the definition Okay
         mCurrentState = STATE_SHOWN;
-        // Get the index of the definition column.
-        int definitionIndex = DroidTermsExampleContract.COLUMN_INDEX_DEFINITION;
-        // Get the definition from column
-        String definition = mData.getString(definitionIndex);
-        // Set the word to the view.
-        mDefinition.setText(definition);
+
         // Show the definition.
         mDefinition.setVisibility(View.VISIBLE);
 
@@ -168,9 +172,7 @@ public class MainActivity extends AppCompatActivity {
 
             // TODO (2) Initialize anything that you need the cursor for, such as setting up Okay
             // the screen with the first word and setting any other instance variables
-            mData.moveToFirst();
-            String word = mData.getString(DroidTermsExampleContract.COLUMN_INDEX_WORD);
-            mWord.setText(word);
+            // I programmed it in another way.
         }
     }
 
