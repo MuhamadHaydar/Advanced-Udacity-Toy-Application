@@ -71,16 +71,30 @@ public class AddTaskActivity extends AppCompatActivity {
             mButton.setText(R.string.update_button);
             if (mTaskId == DEFAULT_TASK_ID) {
                 // populate the UI
-                // TODO (3) Assign the value of EXTRA_TASK_ID in the intent to mTaskId
+                // TODO (3) Assign the value of EXTRA_TASK_ID in the intent to mTaskId Okay
                 // Use DEFAULT_TASK_ID as the default
+                mTaskId = intent.getIntExtra(EXTRA_TASK_ID, DEFAULT_TASK_ID);
 
-                // TODO (4) Get the diskIO Executor from the instance of AppExecutors and
+                // TODO (4) Get the diskIO Executor from the instance of AppExecutors and Okay
                 // call the diskIO execute method with a new Runnable and implement its run method
 
-                // TODO (5) Use the loadTaskById method to retrieve the task with id mTaskId and
+                AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        final TaskEntry currentTask = mDb.taskDao().loadTaskById(mTaskId);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                populateUI(currentTask);
+                            }
+                        });
+                    }
+                });
+
+                // TODO (5) Use the loadTaskById method to retrieve the task with id mTaskId and Okay
                 // assign its value to a final TaskEntry variable
 
-                // TODO (6) Call the populateUI method with the retrieve tasks
+                // TODO (6) Call the populateUI method with the retrieve tasks Okay
                 // Remember to wrap it in a call to runOnUiThread
             }
         }
@@ -114,9 +128,16 @@ public class AddTaskActivity extends AppCompatActivity {
      * @param task the taskEntry to populate the UI
      */
     private void populateUI(TaskEntry task) {
-        // TODO (7) return if the task is null
+        // TODO (7) return if the task is null Okay
+        if (task == null) {
+            return;
+        }
 
-        // TODO (8) use the variable task to populate the UI
+        // TODO (8) use the variable task to populate the UI Okay
+        String descriptionTask = task.getDescription();
+        mEditText.setText(descriptionTask);
+        int priority = task.getPriority();
+        setPriorityInViews(priority);
     }
 
     /**
@@ -132,10 +153,16 @@ public class AddTaskActivity extends AppCompatActivity {
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {
-                // TODO (9) insert the task only if mTaskId matches DEFAULT_TASK_ID
+                // TODO (9) insert the task only if mTaskId matches DEFAULT_TASK_ID Okay
                 // Otherwise update it
                 // call finish in any case
-                mDb.taskDao().insertTask(taskEntry);
+                if (mTaskId == DEFAULT_TASK_ID) {
+                    mDb.taskDao().insertTask(taskEntry);
+                } else {
+                    // You have to set the id of our task same as the task that we want to update.
+                    taskEntry.setId(mTaskId);
+                    mDb.taskDao().updateTask(taskEntry);
+                }
                 finish();
             }
         });
