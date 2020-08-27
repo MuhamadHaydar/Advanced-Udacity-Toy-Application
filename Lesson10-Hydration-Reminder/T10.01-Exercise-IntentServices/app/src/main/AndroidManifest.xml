@@ -12,14 +12,17 @@
             android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!-- TODO (14) Declare WaterReminderIntentService in the Manifest and set the exported
+        <!-- TODO (14) Declare WaterReminderIntentService in the Manifest and set the exported Okay
          attribute to false-->
+        <service
+            android:name=".sync.WaterReminderIntentService"
+            android:exported="false" />
 
     </application>
 </manifest>
