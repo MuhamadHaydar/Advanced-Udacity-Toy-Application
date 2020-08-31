@@ -19,7 +19,8 @@ android {
         }
     }
 
-    // TODO (1) Enable Data Binding in your application
+    // TODO (1) Enable Data Binding in your application Okay
+    dataBinding.enabled = true
 }
 
 dependencies {
